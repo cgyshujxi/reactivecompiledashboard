@@ -1,9 +1,10 @@
-function groupAnagrams(strs) {
-  const map = new Map();
-  for (const str of strs) {
-    const sortedStr = str.split("").sort().join("");
-    if (!map.has(sortedStr)) map.set(sortedStr, []);
-    map.get(sortedStr).push(str);
+function minimumTotal(triangle) {
+  const n = triangle.length;
+  const dp = triangle[n - 1];
+  for (let i = n - 2; i >= 0; i--) {
+    for (let j = 0; j <= i; j++) {
+      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
+    }
   }
-  return [...map.values()];
+  return dp[0];
 }
